@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project JavaHydra">
+
+   <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="build/classes"/>
+        <javac fork="yes" executable="/usr/bin/javac" srcdir="src" destdir="build/classes">
+            <classpath><pathelement path="/usr/share/java/secretshare-v1.0.jar"/></classpath>
+            <classpath><pathelement path="/usr/share/java/activation.jar"/></classpath>
+            <classpath><pathelement path="/usr/share/java/javamail.jar"/></classpath>
+            <classpath>
+             <pathelement path="/usr/share/java/junit.jar:/usr/share/java/hamcrest/all.jar"/>
+           </classpath>
+           <classpath>
+             <pathelement path="/usr/share/icedtea-web/netx.jar"/>
+          </classpath>
+          <classpath>
+             <pathelement path="/usr/share/java/axis/axis.jar:/usr/share/java/commons-discovery.jar:/usr/share/java/axis/jaxrpc.jar:/usr/share/java/axis/saaj.jar"/>
+          </classpath>
+          <classpath>
+              <pathelement path="/usr/share/java/wsdl4j.jar:/usr/share/java/commons-logging.jar:/usr/share/java/commons-httpclient.jar"/>
+        </classpath>
+        </javac>
+     </target>
+
+    <target name="create_run_jar" depends="compile">
+        <jar destfile="./JavaHydra.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="org.glite.data.hydra.javacli.ui.Gui"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="./build/classes"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/secretshare-v1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/junit.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/activation.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/javamail.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/hamcrest/all.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/icedtea-web/netx.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/axis/axis.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/commons-discovery.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/axis/jaxrpc.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/axis/saaj.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/wsdl4j.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/commons-logging.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/usr/share/java/commons-httpclient.jar"/>
+        </jar>
+    </target>
+</project>
