@@ -322,13 +322,13 @@ public class Gui {
 						}
 						outputFile.close();
                                                 int jsw =1;
-                                                System.out.println("XXX JSW: " + jsw++);
+                                                // System.out.println("XXX JSW: " + jsw++);
 						writeToGuiLog("Encrypted to "+ targetFile.getName() );
 						// Save key to hydra
 						// first, try to delete an entry if one exists
 						HydraConnection.forceRemoveEntries(hs.getEndpoints(), filename, hs.getUserId()); // here is the uncaught exception.
 						// so this above should NEVER fail? So this uncaught exception needs to be looked at.
-                                                System.out.println("XXX JSW: " + jsw++);
+                                                // System.out.println("XXX JSW: " + jsw++);
 						writeToGuiLog("Removing existing traces of entry...");
 						// second, generate proper entry
 						try{
@@ -341,11 +341,11 @@ public class Gui {
 							}
 						}
 
-                                                System.out.println("XXX JSW: " + jsw++);
+                                                // System.out.println("XXX JSW: " + jsw++);
 						// then, distribute key to hydra servers
 						writeToGuiLog("Entries created to Hydra...");
 						HydraConnection.distributeKey(hs.getEndpoints(), required_slices, hk, targetFile, hs.getUserId());
-                                                System.out.println("XXX JSW: " + jsw++);
+                                                // System.out.println("XXX JSW: " + jsw++);
 						writeToGuiLog("Key distributed to Hydra servers");
 						
 					} catch (Exception e1) {
